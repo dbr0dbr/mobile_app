@@ -1,0 +1,11 @@
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+proxy_env=''
+
+[node]
+nodejs_ol8		ansible_host=192.168.122.84
+
+
+[redis]
+nodejs_ol8		ansible_host=192.168.122.84
+nodejs_ol8-2		ansible_host=192.168.122.186

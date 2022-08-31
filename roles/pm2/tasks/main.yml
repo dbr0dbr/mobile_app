@@ -1,0 +1,8 @@
+- name: Install/Upgrade pm2 package(s)
+  npm:
+    name: "{{ item }}"
+    global: yes
+    state: present
+  become: true
+  with_items:
+    - pm2 

@@ -1,0 +1,25 @@
+
+- name: install redis
+  yum:
+    name: redis
+    state: present
+  environment: "{{ proxy_env }}"
+
+- name: Open ports for redis
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  loop:
+    - 6379
+    
+- name: Template configuration file to redis.conf
+  template:
+    src: redis.conf.j2
+    dest: '/etc/redis.conf'
+    owner: redis
+    group: redis
+  notify:
+    - restart redis
+  

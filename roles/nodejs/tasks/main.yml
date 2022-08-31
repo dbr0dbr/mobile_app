@@ -1,0 +1,15 @@
+---
+- name: install nodejs
+  dnf:
+    name: '@nodejs:{{ nodejs_version }}'
+  environment: "{{ proxy_env }}"
+
+- name: firewall - open ports 
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  loop:
+    - 443
+    - 80
